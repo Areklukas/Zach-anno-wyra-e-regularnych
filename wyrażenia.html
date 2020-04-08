@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Zadanie - Programowanie teoretyczne</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <script type="text/javascript">
+    function klik()
+    {
+        var form =  document.getElementById('info-form'),
+            patt = 
+			{ 
+                'html' : /^[a-z]+.html$/,
+                'link' : /^\www.[a-z]+.pl$/,
+                'liczba': /^[+ -][0-9]+$/,
+				'rzeczywista': /^[+ -][0-9]+.[0-9]+$/,
+            };
+
+        for (var elem in patt) 
+        {
+            if (form[elem])
+            {
+                if (!patt[elem].test(form[elem].value))
+                {
+                    alert('Pole ' + elem + ' - nieprawidłowa wartość!');
+                    form[elem].style.background = 'red';
+                    return false;
+                }
+                else
+                {
+                    form[elem].style.background = '';
+                }
+            }
+        }
+        alert('Wszystkie pola zostały wypełnione prawidłowo');
+        form[elem].style.background = 'green';
+		return true;
+    }
+    </script>
+</head>
+<body>
+	<form action="#" id="info-form" onsubmit='return klik();'>
+        Wyrażenie ze znacznikiem html: <input type="text" name="html" id="html"/><br />
+        Link: <input type="text" name="link" id="link"/><br />
+        Liczba całkowita ze znakiem: <input type="text" name="liczba" id="liczba"/><br />
+        Liczba rzeczywista ze znakiem bez wykładnika e: <input type="text" name="rzeczywista" id="rzeczywista"><br/>
+		
+		<button onclick="klik()">OK</button>
+    </form>
+</body>
+</html>
+
